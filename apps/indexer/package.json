@@ -1,0 +1,19 @@
+{
+  "name": "@pool-analyzer/indexer",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "ponder dev",
+    "build": "echo \"ponder codegen skipped (run npm run dev:indexer to index)\"",
+    "start": "ponder start"
+  },
+  "dependencies": {
+    "@ponder/core": "^0.7.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "viem": "^2.9.7"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

@@ -1,0 +1,488 @@
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+scalar BigInt
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Meta {
+  status: JSON
+}
+
+type Query {
+  token(address: String!): Token
+  tokens(where: TokenFilter, orderBy: String, orderDirection: String, before: String, after: String, limit: Int): TokenPage!
+  pool(address: String!): Pool
+  pools(where: PoolFilter, orderBy: String, orderDirection: String, before: String, after: String, limit: Int): PoolPage!
+  poolMetric(poolAddress: String!): PoolMetric
+  poolMetrics(where: PoolMetricFilter, orderBy: String, orderDirection: String, before: String, after: String, limit: Int): PoolMetricPage!
+  poolSwap(id: String!): PoolSwap
+  poolSwaps(where: PoolSwapFilter, orderBy: String, orderDirection: String, before: String, after: String, limit: Int): PoolSwapPage!
+  poolVolumeBucket(id: String!): PoolVolumeBucket
+  poolVolumeBuckets(where: PoolVolumeBucketFilter, orderBy: String, orderDirection: String, before: String, after: String, limit: Int): PoolVolumeBucketPage!
+  _meta: Meta
+}
+
+type Token {
+  address: String!
+  symbol: String
+  name: String
+  decimals: Int
+}
+
+type TokenPage {
+  items: [Token!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input TokenFilter {
+  AND: [TokenFilter]
+  OR: [TokenFilter]
+  address: String
+  address_not: String
+  address_in: [String]
+  address_not_in: [String]
+  address_contains: String
+  address_not_contains: String
+  address_starts_with: String
+  address_ends_with: String
+  address_not_starts_with: String
+  address_not_ends_with: String
+  symbol: String
+  symbol_not: String
+  symbol_in: [String]
+  symbol_not_in: [String]
+  symbol_contains: String
+  symbol_not_contains: String
+  symbol_starts_with: String
+  symbol_ends_with: String
+  symbol_not_starts_with: String
+  symbol_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String]
+  name_not_in: [String]
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_ends_with: String
+  name_not_starts_with: String
+  name_not_ends_with: String
+  decimals: Int
+  decimals_not: Int
+  decimals_in: [Int]
+  decimals_not_in: [Int]
+  decimals_gt: Int
+  decimals_lt: Int
+  decimals_gte: Int
+  decimals_lte: Int
+}
+
+type Pool {
+  address: String!
+  token0Address: String!
+  token1Address: String!
+  fee: Int!
+  tickSpacing: Int!
+  createdAt: Int!
+}
+
+type PoolPage {
+  items: [Pool!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input PoolFilter {
+  AND: [PoolFilter]
+  OR: [PoolFilter]
+  address: String
+  address_not: String
+  address_in: [String]
+  address_not_in: [String]
+  address_contains: String
+  address_not_contains: String
+  address_starts_with: String
+  address_ends_with: String
+  address_not_starts_with: String
+  address_not_ends_with: String
+  token0Address: String
+  token0Address_not: String
+  token0Address_in: [String]
+  token0Address_not_in: [String]
+  token0Address_contains: String
+  token0Address_not_contains: String
+  token0Address_starts_with: String
+  token0Address_ends_with: String
+  token0Address_not_starts_with: String
+  token0Address_not_ends_with: String
+  token1Address: String
+  token1Address_not: String
+  token1Address_in: [String]
+  token1Address_not_in: [String]
+  token1Address_contains: String
+  token1Address_not_contains: String
+  token1Address_starts_with: String
+  token1Address_ends_with: String
+  token1Address_not_starts_with: String
+  token1Address_not_ends_with: String
+  fee: Int
+  fee_not: Int
+  fee_in: [Int]
+  fee_not_in: [Int]
+  fee_gt: Int
+  fee_lt: Int
+  fee_gte: Int
+  fee_lte: Int
+  tickSpacing: Int
+  tickSpacing_not: Int
+  tickSpacing_in: [Int]
+  tickSpacing_not_in: [Int]
+  tickSpacing_gt: Int
+  tickSpacing_lt: Int
+  tickSpacing_gte: Int
+  tickSpacing_lte: Int
+  createdAt: Int
+  createdAt_not: Int
+  createdAt_in: [Int]
+  createdAt_not_in: [Int]
+  createdAt_gt: Int
+  createdAt_lt: Int
+  createdAt_gte: Int
+  createdAt_lte: Int
+}
+
+type PoolMetric {
+  poolAddress: String!
+  sqrtPriceX96: String
+  liquidity: String
+  tvlToken0: String
+  tvlToken1: String
+  totalLiquidityUsd: String
+  priceToken0Usd: String
+  priceToken1Usd: String
+  volume24hToken0: String
+  volume24hToken1: String
+  volume24hUsd: String
+  updatedAt: Int
+  blockNumber: Int
+}
+
+type PoolMetricPage {
+  items: [PoolMetric!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input PoolMetricFilter {
+  AND: [PoolMetricFilter]
+  OR: [PoolMetricFilter]
+  poolAddress: String
+  poolAddress_not: String
+  poolAddress_in: [String]
+  poolAddress_not_in: [String]
+  poolAddress_contains: String
+  poolAddress_not_contains: String
+  poolAddress_starts_with: String
+  poolAddress_ends_with: String
+  poolAddress_not_starts_with: String
+  poolAddress_not_ends_with: String
+  sqrtPriceX96: String
+  sqrtPriceX96_not: String
+  sqrtPriceX96_in: [String]
+  sqrtPriceX96_not_in: [String]
+  sqrtPriceX96_contains: String
+  sqrtPriceX96_not_contains: String
+  sqrtPriceX96_starts_with: String
+  sqrtPriceX96_ends_with: String
+  sqrtPriceX96_not_starts_with: String
+  sqrtPriceX96_not_ends_with: String
+  liquidity: String
+  liquidity_not: String
+  liquidity_in: [String]
+  liquidity_not_in: [String]
+  liquidity_contains: String
+  liquidity_not_contains: String
+  liquidity_starts_with: String
+  liquidity_ends_with: String
+  liquidity_not_starts_with: String
+  liquidity_not_ends_with: String
+  tvlToken0: String
+  tvlToken0_not: String
+  tvlToken0_in: [String]
+  tvlToken0_not_in: [String]
+  tvlToken0_contains: String
+  tvlToken0_not_contains: String
+  tvlToken0_starts_with: String
+  tvlToken0_ends_with: String
+  tvlToken0_not_starts_with: String
+  tvlToken0_not_ends_with: String
+  tvlToken1: String
+  tvlToken1_not: String
+  tvlToken1_in: [String]
+  tvlToken1_not_in: [String]
+  tvlToken1_contains: String
+  tvlToken1_not_contains: String
+  tvlToken1_starts_with: String
+  tvlToken1_ends_with: String
+  tvlToken1_not_starts_with: String
+  tvlToken1_not_ends_with: String
+  totalLiquidityUsd: String
+  totalLiquidityUsd_not: String
+  totalLiquidityUsd_in: [String]
+  totalLiquidityUsd_not_in: [String]
+  totalLiquidityUsd_contains: String
+  totalLiquidityUsd_not_contains: String
+  totalLiquidityUsd_starts_with: String
+  totalLiquidityUsd_ends_with: String
+  totalLiquidityUsd_not_starts_with: String
+  totalLiquidityUsd_not_ends_with: String
+  priceToken0Usd: String
+  priceToken0Usd_not: String
+  priceToken0Usd_in: [String]
+  priceToken0Usd_not_in: [String]
+  priceToken0Usd_contains: String
+  priceToken0Usd_not_contains: String
+  priceToken0Usd_starts_with: String
+  priceToken0Usd_ends_with: String
+  priceToken0Usd_not_starts_with: String
+  priceToken0Usd_not_ends_with: String
+  priceToken1Usd: String
+  priceToken1Usd_not: String
+  priceToken1Usd_in: [String]
+  priceToken1Usd_not_in: [String]
+  priceToken1Usd_contains: String
+  priceToken1Usd_not_contains: String
+  priceToken1Usd_starts_with: String
+  priceToken1Usd_ends_with: String
+  priceToken1Usd_not_starts_with: String
+  priceToken1Usd_not_ends_with: String
+  volume24hToken0: String
+  volume24hToken0_not: String
+  volume24hToken0_in: [String]
+  volume24hToken0_not_in: [String]
+  volume24hToken0_contains: String
+  volume24hToken0_not_contains: String
+  volume24hToken0_starts_with: String
+  volume24hToken0_ends_with: String
+  volume24hToken0_not_starts_with: String
+  volume24hToken0_not_ends_with: String
+  volume24hToken1: String
+  volume24hToken1_not: String
+  volume24hToken1_in: [String]
+  volume24hToken1_not_in: [String]
+  volume24hToken1_contains: String
+  volume24hToken1_not_contains: String
+  volume24hToken1_starts_with: String
+  volume24hToken1_ends_with: String
+  volume24hToken1_not_starts_with: String
+  volume24hToken1_not_ends_with: String
+  volume24hUsd: String
+  volume24hUsd_not: String
+  volume24hUsd_in: [String]
+  volume24hUsd_not_in: [String]
+  volume24hUsd_contains: String
+  volume24hUsd_not_contains: String
+  volume24hUsd_starts_with: String
+  volume24hUsd_ends_with: String
+  volume24hUsd_not_starts_with: String
+  volume24hUsd_not_ends_with: String
+  updatedAt: Int
+  updatedAt_not: Int
+  updatedAt_in: [Int]
+  updatedAt_not_in: [Int]
+  updatedAt_gt: Int
+  updatedAt_lt: Int
+  updatedAt_gte: Int
+  updatedAt_lte: Int
+  blockNumber: Int
+  blockNumber_not: Int
+  blockNumber_in: [Int]
+  blockNumber_not_in: [Int]
+  blockNumber_gt: Int
+  blockNumber_lt: Int
+  blockNumber_gte: Int
+  blockNumber_lte: Int
+}
+
+type PoolSwap {
+  id: String!
+  poolAddress: String!
+  amount0: String!
+  amount1: String!
+  amountUsd: String!
+  timestamp: Int!
+  blockNumber: Int!
+}
+
+type PoolSwapPage {
+  items: [PoolSwap!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input PoolSwapFilter {
+  AND: [PoolSwapFilter]
+  OR: [PoolSwapFilter]
+  id: String
+  id_not: String
+  id_in: [String]
+  id_not_in: [String]
+  id_contains: String
+  id_not_contains: String
+  id_starts_with: String
+  id_ends_with: String
+  id_not_starts_with: String
+  id_not_ends_with: String
+  poolAddress: String
+  poolAddress_not: String
+  poolAddress_in: [String]
+  poolAddress_not_in: [String]
+  poolAddress_contains: String
+  poolAddress_not_contains: String
+  poolAddress_starts_with: String
+  poolAddress_ends_with: String
+  poolAddress_not_starts_with: String
+  poolAddress_not_ends_with: String
+  amount0: String
+  amount0_not: String
+  amount0_in: [String]
+  amount0_not_in: [String]
+  amount0_contains: String
+  amount0_not_contains: String
+  amount0_starts_with: String
+  amount0_ends_with: String
+  amount0_not_starts_with: String
+  amount0_not_ends_with: String
+  amount1: String
+  amount1_not: String
+  amount1_in: [String]
+  amount1_not_in: [String]
+  amount1_contains: String
+  amount1_not_contains: String
+  amount1_starts_with: String
+  amount1_ends_with: String
+  amount1_not_starts_with: String
+  amount1_not_ends_with: String
+  amountUsd: String
+  amountUsd_not: String
+  amountUsd_in: [String]
+  amountUsd_not_in: [String]
+  amountUsd_contains: String
+  amountUsd_not_contains: String
+  amountUsd_starts_with: String
+  amountUsd_ends_with: String
+  amountUsd_not_starts_with: String
+  amountUsd_not_ends_with: String
+  timestamp: Int
+  timestamp_not: Int
+  timestamp_in: [Int]
+  timestamp_not_in: [Int]
+  timestamp_gt: Int
+  timestamp_lt: Int
+  timestamp_gte: Int
+  timestamp_lte: Int
+  blockNumber: Int
+  blockNumber_not: Int
+  blockNumber_in: [Int]
+  blockNumber_not_in: [Int]
+  blockNumber_gt: Int
+  blockNumber_lt: Int
+  blockNumber_gte: Int
+  blockNumber_lte: Int
+}
+
+type PoolVolumeBucket {
+  id: String!
+  poolAddress: String!
+  bucketStart: Int!
+  amount0: String!
+  amount1: String!
+  amountUsd: String!
+  updatedAt: Int!
+}
+
+type PoolVolumeBucketPage {
+  items: [PoolVolumeBucket!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input PoolVolumeBucketFilter {
+  AND: [PoolVolumeBucketFilter]
+  OR: [PoolVolumeBucketFilter]
+  id: String
+  id_not: String
+  id_in: [String]
+  id_not_in: [String]
+  id_contains: String
+  id_not_contains: String
+  id_starts_with: String
+  id_ends_with: String
+  id_not_starts_with: String
+  id_not_ends_with: String
+  poolAddress: String
+  poolAddress_not: String
+  poolAddress_in: [String]
+  poolAddress_not_in: [String]
+  poolAddress_contains: String
+  poolAddress_not_contains: String
+  poolAddress_starts_with: String
+  poolAddress_ends_with: String
+  poolAddress_not_starts_with: String
+  poolAddress_not_ends_with: String
+  bucketStart: Int
+  bucketStart_not: Int
+  bucketStart_in: [Int]
+  bucketStart_not_in: [Int]
+  bucketStart_gt: Int
+  bucketStart_lt: Int
+  bucketStart_gte: Int
+  bucketStart_lte: Int
+  amount0: String
+  amount0_not: String
+  amount0_in: [String]
+  amount0_not_in: [String]
+  amount0_contains: String
+  amount0_not_contains: String
+  amount0_starts_with: String
+  amount0_ends_with: String
+  amount0_not_starts_with: String
+  amount0_not_ends_with: String
+  amount1: String
+  amount1_not: String
+  amount1_in: [String]
+  amount1_not_in: [String]
+  amount1_contains: String
+  amount1_not_contains: String
+  amount1_starts_with: String
+  amount1_ends_with: String
+  amount1_not_starts_with: String
+  amount1_not_ends_with: String
+  amountUsd: String
+  amountUsd_not: String
+  amountUsd_in: [String]
+  amountUsd_not_in: [String]
+  amountUsd_contains: String
+  amountUsd_not_contains: String
+  amountUsd_starts_with: String
+  amountUsd_ends_with: String
+  amountUsd_not_starts_with: String
+  amountUsd_not_ends_with: String
+  updatedAt: Int
+  updatedAt_not: Int
+  updatedAt_in: [Int]
+  updatedAt_not_in: [Int]
+  updatedAt_gt: Int
+  updatedAt_lt: Int
+  updatedAt_gte: Int
+  updatedAt_lte: Int
+}

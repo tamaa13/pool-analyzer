@@ -1,0 +1,11 @@
+node_modules
+.next
+dist
+build
+.env
+.env.local
+apps/api/.env
+apps/web/.env
+apps/indexer/.env
+.ponder*
+ponder.sqlite*

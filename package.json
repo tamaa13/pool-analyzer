@@ -1,0 +1,34 @@
+{
+  "name": "pool-analyzer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Monorepo technical exercise that inspects PancakeSwap v3 liquidity for a given token, estimates depth, and surfaces AI-driven commentary. Built with a TypeScript Express API, Next.js 14 dashboard, and shared DTOs.",
+  "license": "MIT",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n indexer,api,web \"npm run dev -w apps/indexer\" \"npm run dev -w apps/api\" \"npm run dev -w apps/web\"",
+    "dev:indexer": "npm run dev -w apps/indexer",
+    "dev:api": "npm run dev -w apps/api",
+    "dev:web": "npm run dev -w apps/web",
+    "build": "npm run build -ws",
+    "lint": "npm run lint -ws --if-present",
+    "typecheck": "npm run typecheck -ws --if-present",
+    "test": "npm run test -ws --if-present"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "overrides": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  }
+}
