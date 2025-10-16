@@ -138,7 +138,3 @@ curl "http://localhost:4000/api/tokens/search?q=wbnb"
 - ✅ Next.js frontend with search, filtering, and health dashboards.
 - ✅ Optional Ponder indexer for fresher data (with caveats above).
 - ✅ This README documents setup, caveats, and useful commands.
-
-## License
-
-MIT
